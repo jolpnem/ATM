@@ -26,7 +26,7 @@ public class ATMDepartmentTest {
 
         int atmCount = 0;
         try {
-            Field atmSet = atmDepartment.getClass().getDeclaredField("atmSet");
+            Field atmSet = atmDepartment.getClass().getDeclaredField("ATMs");
             atmSet.setAccessible(true);
 
             atmCount = ((Set)atmSet.get(atmDepartment)).size();

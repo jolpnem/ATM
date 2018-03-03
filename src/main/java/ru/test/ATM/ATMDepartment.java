@@ -4,30 +4,31 @@ import java.util.HashSet;
 import java.util.Set;
 
 class ATMDepartment {
-    private Set<ATM> atmSet;
-    private Set<ATM> initialAtmSet;
+    private Set<ATM> ATMs;
+    private Set<ATM> ATMsWithInitialStates;
+    //TODO: refactor ATMsWithInitialStates with using Memento pattern
 
-    public ATMDepartment() {
-        initialAtmSet = new HashSet<>();
-        atmSet = new HashSet<>();
+    ATMDepartment() {
+        ATMsWithInitialStates = new HashSet<>();
+        ATMs = new HashSet<>();
     }
 
-    public void addATM(ATM atm) {
-        initialAtmSet.add(atm.clone());
-        atmSet.add(atm);
+    void addATM(ATM atm) {
+        ATMsWithInitialStates.add(atm.clone());
+        ATMs.add(atm);
     }
 
-    public int calculateCashBalance() {
+    int calculateCashBalance() {
         int cashBalance = 0;
 
-        for (ATM atm : atmSet)
+        for (ATM atm : ATMs)
             cashBalance += atm.getBalance();
 
         return cashBalance;
     }
 
-    public void restoreATMsStates() {
-        atmSet.clear();
-        atmSet.addAll(initialAtmSet);
+    void restoreATMsStates() {
+        ATMs.clear();
+        ATMs.addAll(ATMsWithInitialStates);
     }
 }
